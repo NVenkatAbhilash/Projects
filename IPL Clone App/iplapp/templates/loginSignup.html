@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bulma.css' %}">
+</head>
+<body style="margin: 200px">
+<center>
+
+<form method="post" action="">{% csrf_token%}
+    <table class="table">
+    {{ form }}
+    </table>
+    <input class="button" type="submit">
+</form>
+<br>
+<a class="button" href="{% url link_name %}">{{ link_name }}</a>
+{% if message %}
+<script>
+    alert('invalid credentials');
+</script>
+{% endif %}
+</center>
+</body>
+</html>

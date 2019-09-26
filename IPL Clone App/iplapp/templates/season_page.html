@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Season</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css\bulma.css' %}">
+    <style>
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin: 30px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 60px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            padding: 12px 16px;
+            z-index: 1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .responsiveDiv {
+            border-radius: 10px;
+            margin: 30px;
+            width: 400px;
+            display: inline-block;
+        }
+        .teams{
+            font-weight: 600;   
+            font-size: 18px;
+        }
+
+        .button{
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="dropdown">
+            <span class="button">SEASONS</span>
+            <div class="dropdown-content">
+                {% for year in season_list %}
+                <a href="{% url 'season_page_url' year 1 %}">{{year}}</a>
+                <br>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="dropdown">
+            <span class="button">POINTS</span>
+            <div class="dropdown-content">
+                {% for year in season_list %}
+                <a href="{% url 'points_url' year %}">{{year}}</a>
+                <br>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    {% if username %}
+                    <h1 class="title is-5" style="margin: 10px">USERNAME:</h1>
+                    <h1 class="title is-5" style="margin: 10px">{{username}}</h1>
+                    <a class="button is-primary" href="{% url 'logout'%}">
+                        <strong>Logout</strong>
+                    </a>
+                    {% else %}
+                    <a class="button is-primary" href="{% url 'login'%}">
+                        <strong>Login</strong>
+                    </a>
+                    <a class="button is-primary" href="{% url 'signup'%}">
+                        <strong>Sign Up</strong>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <center>
+        <h1 class="title is-1">SEASON : {{current_season}}</h1>
+        {% for match in season %}
+        <div class="responsiveDiv">
+            <p class="teams">{{match.team1}} vs {{match.team2}}</p>
+            <p>Match at {{match.venue}}</p>
+            <p>{{match.toss_winner}} won the toss and choose to {{match.toss_decision}}</p>
+            <p><strong>{{match.winner}}</strong> won the match</p>
+            <p>man of the match goes to {{match.player_of_match}}</p>
+            <p><a class="button" href="{% url 'match_url' match.season match.id %}">VIEW MATCH DETAILS</a></p>
+        </div>
+        {% endfor %}
+        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+            <a class="pagination-previous" href="{% url 'season_page_url' current_season prev_page %}">Previous</a>
+            <a class="pagination-next" href="{% url 'season_page_url' current_season next_page %}">Next page</a>
+            <ul class="pagination-list">
+                {% for page in max_page %}
+                <li><a class="pagination-link" href="{% url 'season_page_url' current_season page %}">{{page}}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </center>
+<br>
+<br>
+</body>
+
+</html>

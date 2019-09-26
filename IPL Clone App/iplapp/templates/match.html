@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Match</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css\bulma.css' %}">
+    <script>
+        function showhide() {
+            var div = document.getElementById("hide");
+            if (div.style.display == "block") {
+                div.style.display = "none";
+            } else {
+                div.style.display = "block";
+            }
+        }
+
+        function showInnings1() {
+            var div1 = document.getElementById("hide1");
+            var div2 = document.getElementById("hide2");
+            div2.style.display = "none";
+            div1.style.display = "block";
+        }
+
+        function showInnings2() {
+            var div1 = document.getElementById("hide1");
+            var div2 = document.getElementById("hide2");
+            div1.style.display = "none";
+            div2.style.display = "block";
+
+        }
+    </script>
+    <style>
+        #hide {
+            display: none;
+        }
+
+        #hide2 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+            <div id="navbarBasicExample" class="navbar-menu">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <h1 class="title is-5" style="margin: 10px">USERNAME:</h1>
+                            <h1 class="title is-5" style="margin: 10px">{{username}}</h1>
+                            <a class="button is-primary" href="{% url 'logout'%}">
+                                <strong>Logout</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <h2>{{season.team1}} vs {{season.team2}}</h2>
+        <h2>{{season.toss_winner}} won the toss and choose to {{season.toss_decision}} first</h2>
+        {% if season.win_by_runs is 0 %}
+        <h2><strong>{{season.winner}}</strong> won the match by {{season.win_by_wickets}} wickets</h2>
+        {% endif %}
+        {% if season.win_by_wickets is 0 %}
+        <h2><strong>{{season.winner}}</strong> won the match by {{season.win_by_runs}} runs</h2>
+        {% endif %}
+        <button class="button" onclick="showhide()" style="margin:20px;">About Match</button>
+        <div id="hide">
+            <a class="button" onclick="showInnings1()" style="margin:20px;">1st Innings</a>
+            <a class="button" onclick="showInnings2()" style="margin:20px;">2nd Innings</a>
+            <div id="hide1">
+                <h1 class="title is-3">INNINGS : 1</h1>
+                <table class="table" align="center">
+                    <th>Over</th>
+                    <th>Ball</th>
+                    <th>Batsman</th>
+                    <th>Non-Striker</th>
+                    <th>Bowler</th>
+                    <th>Extra runs</th>
+                    <th>Total runs</th>
+                    <th>Player out</th>
+                    {% for ball in match %}
+                    {% if ball.inning == 1 %}
+                    <tr>
+                        <td>{{ball.over}}</td>
+                        <td>{{ball.ball}}</td>
+                        <td>{{ball.batsman}}</td>
+                        <td>{{ball.non_striker}}</td>
+                        <td>{{ball.bowler}}</td>
+                        <td>{{ball.extra_runs}}</td>
+                        <td>{{ball.total_runs}}</td>
+                        <td>{{ball.player_dismissed}}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="hide2">
+                <h1 class="title is-3">INNINGS : 2</h1>
+                <table class="table" align="center">
+                    <th>Over</th>
+                    <th>Ball</th>
+                    <th>Batsman</th>
+                    <th>Non-Striker</th>
+                    <th>Bowler</th>
+                    <th>Extra runs</th>
+                    <th>Total runs</th>
+                    <th>Player out</th>
+                    {% for ball in match %}
+                    {% if ball.inning == 2 %}
+                    <tr>
+                        <td>{{ball.over}}</td>
+                        <td>{{ball.ball}}</td>
+                        <td>{{ball.batsman}}</td>
+                        <td>{{ball.non_striker}}</td>
+                        <td>{{ball.bowler}}</td>
+                        <td>{{ball.extra_runs}}</td>
+                        <td>{{ball.total_runs}}</td>
+                        <td>{{ball.player_dismissed}}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </center>
+</body>
+
+</html>

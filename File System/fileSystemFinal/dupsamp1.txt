@@ -1,0 +1,98 @@
+
+MRND SUMMER 2019
+Q & A
+Resources
+Statistics
+NOTLA VENKAT ABHILASH
+NOTLA VENKAT ABHILASH
+Search Companies
+
+?
+Note History:
+note 70 viewsActions 
+FILE SYSTEMS SPEC
+DISK IO API
+
+ 
+
+init(<file_name>, <block_size>){}
+
+readBlock(<buffer>, <block_id>){}
+
+writeBlock(<buffer>, <block_id>){}
+
+ 
+
+COMMANDS
+
+ 
+
+MOUNT <harddiskfilename> <blockSize> - should use the given file as the disk.
+
+ex: MOUNT harddisk.hdd 16384
+
+ 
+
+COPYTOFS <sourceFileName> <destFileName> - should upload the file which is present in the machine's file system to your file system.
+
+ex: COPYTOFS dog.jpg puppy.jpg
+
+ 
+
+COPYFROMFS <sourceFileName> <destFileName> - should download the file from your file system to machine's file system.
+
+ex: COPYFROMFS puppy.jpg dogfromfs.jpg
+
+ 
+
+FORMAT <blockSize> - should format your file system with the given block size.
+
+ex: FORMAT 16384
+
+ 
+
+LS - should list all the files present in your file system.
+
+ 
+
+DELETE <fileName> - should delete the file specified from your file system.
+
+ 
+
+DEBUG - should list all the files with all their details and also details like available space, occupied space and total space of your file system.
+
+ 
+
+UNMOUNT - unmount the current disk.
+
+ 
+
+EXIT - stop the program.
+
+
+resourcesupdates
+Updated 14 hours ago by SRI HARSHA KOMMANA
+followup discussionsfor lingering questions and comments
+Start a new followup discussion
+Compose a new followup discussion
+?
+UnreadUpdatedUnresolved?
+ New Post
+Search or add a post...
+? YESTERDAY
+? THIS WEEK
+? LAST WEEK
+? WEEK 5/12 - 5/18
+? WEEK 5/5 - 5/11
+? WEEK 4/28 - 5/4
+Average Response Time:
+N/A
+Online Now   |   This Week:
+1 | 82
+Special Mentions:
+There are no special mentions at this time.
+Copyright © 2019 Piazza Technologies, Inc. All Rights Reserved. Privacy Policy Copyright Policy Terms of Use Blog Report Bug!
+×
+Who can see my profile, and what can they see?
+By publishing your profile, companies that participate in Piazza Careers and other students who have opted into Piazza Careers can view and engage with your profile. Your Piazza class posts are never made visible to anyone outside your class.
+OK
